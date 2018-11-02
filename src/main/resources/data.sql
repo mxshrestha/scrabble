@@ -1,0 +1,1 @@
+INSERT INTO persons (id, user_name, first_name, last_name) VALUES(1, "scrabbleUser", "scrabbler", "champion");

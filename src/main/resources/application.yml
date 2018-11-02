@@ -1,0 +1,14 @@
+spring:
+  jpa.hibernate.ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/scrabble_db
+    username: root
+    password:
+    initialization-mode: never
+  jackson:
+    serialization:
+      indent_output: true
+app:
+  dictionaries:
+    - SOWPODS
+    - TWL06

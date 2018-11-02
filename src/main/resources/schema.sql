@@ -1,0 +1,48 @@
+CREATE TABLE IF NOT EXISTS games (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    state TINYINT DEFAULT 0,
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS tiles (
+    game_id INT NOT NULL,
+    row INT NOT NULL,
+    col INT NOT NULL,
+    val CHAR(1) NOT NULL DEFAULT '.',
+    boost INT NOT NULL DEFAULT 1,
+    char_boost INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (game_id, row, col),
+    CONSTRAINT game_id_tile_fk FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS persons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(30) UNIQUE NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS game_players (
+    game_id INT NOT NULL,
+    player_id INT,
+    player_order INT NOT NULL,
+    UNIQUE(game_id, player_id, player_order),
+    CONSTRAINT game_id_game_players_fk FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE,
+    CONSTRAINT player_id_game_players_fk FOREIGN KEY (player_id) REFERENCES persons(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_bin;
+
+CREATE TABLE IF NOT EXISTS game_moves (
+    game_id INT NOT NULL,
+    player_id INT,
+    word VARCHAR(100) NOT NULL,
+    row INT NOT NULL,
+    col INT NOT NULL,
+    direction INT NOT NULL,
+    move_time TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
+    UNIQUE(game_id, player_id, row, col),
+    CONSTRAINT game_id_game_moves_fk FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE,
+    CONSTRAINT player_id_game_moves_fk FOREIGN KEY (player_id) REFERENCES persons(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_bin;

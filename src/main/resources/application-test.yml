@@ -1,0 +1,8 @@
+spring:
+  jpa.hibernate.ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/scrabble_db_test
+    username: root
+    password:
+    initialization-mode: never
+    platform: test
