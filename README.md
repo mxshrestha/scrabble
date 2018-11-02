@@ -17,7 +17,7 @@ Make sure MySQL is running in port 3306 before the application starts.
 
 # run application
 Because the application needs to setup the initial database, the command to run the first time is different than the subsequent runs.
-Make sure to cd to the scrabble project folder before running the commands.
+Make sure to change directory to the scrabble project folder before running the commands.
  - Run application first time<br/>
     `mvn spring-boot:run -Dspring-boot.run.arguments=--spring.datasource.initialization-mode=always`
  - Run application after first time<br/>
@@ -269,9 +269,9 @@ tilesPerPlayer - maximum number of tiles for each player for the game. Optional 
 ```
 
 ### update game payload JSON object
-boardSize - size of the board for the game (integer).
-players - JSON array of [player request JSON object](#player-parameter).
-state - state of the game (integer). 0 represents initialized (new game), 1 represents in-progress game, 2 represents finished game.
+boardSize - size of the board for the game (integer).<br/>
+players - JSON array of [player request JSON object](#player-parameter).<br/>
+state - state of the game (integer). 0 represents initialized (new game), 1 represents in-progress game, 2 represents finished game.<br/>
 ```
 {
     "boardSize": "20",
@@ -287,11 +287,11 @@ state - state of the game (integer). 0 represents initialized (new game), 1 repr
 ```
 
 ### make move payload JSON object
-word - the word that the player intends to play for the move (string). Required.
-row - the row index of the board from which the word starts (integer). 0 based. Required.
-column - the column index of the board from which the word starts (integer). 0 based. Required.
-direction - the direction in which the word is played (integer). 0 for left to right. 1 for top to bottom.
-player - the [player request JSON object](#player-parameter) representing the player making the move. Required
+word - the word that the player intends to play for the move (string). Required.<br/>
+row - the row index of the board from which the word starts (integer). 0 based. Required.<br/>
+column - the column index of the board from which the word starts (integer). 0 based. Required.<br/>
+direction - the direction in which the word is played (integer). 0 for left to right. 1 for top to bottom.<br/>
+player - the [player request JSON object](#player-parameter) representing the player making the move. Required<br/>
 ```
 {
 	"word": "test",
