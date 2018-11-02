@@ -204,8 +204,8 @@ row - the row index for the move (integer)<br/>
 column - the column index for the move (integer)<br/>
 player - the player JSON object who made the move<br/>
 direction - the move direction id (integer). 0 for Left to Right and 1 for Top to Bottom.<br/>
-points - the total points for the move (integer).<br/>
-time - the long value for the time of the move. Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT
+points - the total points for the move (integer)<br/>
+time - the long value for the time of the move. Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT.
 ```
 {
     "word": "test",
@@ -269,9 +269,9 @@ tilesPerPlayer - maximum number of tiles for each player for the game. Optional 
 ```
 
 ### update game payload JSON object
-boardSize - size of the board for the game (integer).<br/>
-players - JSON array of [player request JSON object](#player-parameter).<br/>
-state - state of the game (integer). 0 represents initialized (new game), 1 represents in-progress game, 2 represents finished game.<br/>
+boardSize - size of the board for the game (integer)<br/>
+players - JSON array of [player request JSON object](#player-parameter)<br/>
+state - state of the game (integer). 0 represents initialized (new game), 1 represents in-progress game, 2 represents finished game<br/>
 ```
 {
     "boardSize": "20",
@@ -291,7 +291,7 @@ word - the word that the player intends to play for the move (string). Required.
 row - the row index of the board from which the word starts (integer). 0 based. Required.<br/>
 column - the column index of the board from which the word starts (integer). 0 based. Required.<br/>
 direction - the direction in which the word is played (integer). 0 for left to right. 1 for top to bottom.<br/>
-player - the [player request JSON object](#player-parameter) representing the player making the move. Required<br/>
+player - the [player request JSON object](#player-parameter) representing the player making the move. Required.<br/>
 ```
 {
 	"word": "test",
