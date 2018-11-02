@@ -2,6 +2,8 @@ package game.services;
 
 import game.configuration.AppConfiguration;
 import game.core.DictionaryType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
  */
 @Service
 class StandardDictionaryManager implements DictionaryManager {
+    private static final Logger log = LoggerFactory.getLogger(StandardDictionaryManager.class);
+
     private final Map<Integer,Map<Character, List<String>>> dictionaryMap = new HashMap<>();
 
     @Autowired
@@ -28,6 +32,7 @@ class StandardDictionaryManager implements DictionaryManager {
         if (extFiles.isEmpty()) {
             final List<File> dictionaries = appConfiguration.getDictionaries().stream()
                     .map(dictionary -> {
+                        log.info("Loading Dictionary: " + dictionary);
                         final DictionaryType dictionaryType = DictionaryType.fromName(dictionary);
                         final File file = new File(StandardDictionaryManager.class.getClassLoader()
                                 .getResource(dictionaryType.getFilePath())
